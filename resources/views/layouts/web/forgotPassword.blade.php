@@ -26,10 +26,10 @@
                     </div>
                     <div class="row mt-3 ml-1">
                         <div class="col-3 text-right">
-                            <label class="mt-1" for="email">E-mail: </label>
+                            <label class="mt-1" for="emailPasswordReset">E-mail: </label>
                         </div>
                         <div class="col-8">
-                            <input class="form-control" name="email" id="email" type="email" placeholder="e-mail">
+                            <input class="form-control" name="emailPasswordReset" id="emailPasswordReset" type="emailPasswordReset" placeholder="e-mail">
                         </div>
                     </div>
                     <div class="mt-4 d-flex justify-content-center">

@@ -4,13 +4,17 @@ namespace App\Models;
 
 use App\Models\Pessoa;
 use Illuminate\Support\Str;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
 {
+    use LaratrustUserTrait;
+    use HasApiTokens;
     use HasFactory;
     use Notifiable;
     //use SoftDeletes;
@@ -25,7 +29,7 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
-        'name', 'email', 'password','permissao', 'pessoa_id'
+        'name', 'email', 'password','permissao', 'pessoa_id', 'token'
     ];
 
     /**
@@ -44,6 +48,7 @@ class User extends Authenticatable
         static::creating(function ($model) {
             $model->id = Str::uuid();
         });
+
     }
 
     public function pessoa()

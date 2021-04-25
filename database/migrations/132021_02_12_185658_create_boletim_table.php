@@ -15,6 +15,15 @@ class CreateBoletimTable extends Migration
     {
         Schema::create('boletims', function (Blueprint $table) {
             $table->id();
+            $table->boolean('calendario_frequencia')->nullable();
+            $table->double('nota_1')->nullable();
+            $table->double('nota_2')->nullable();
+            $table->double('nota_3')->nullable();
+            $table->double('nota_4')->nullable();
+            $table->unsignedInteger('aluno_id')->nullable();
+
+            $table->foreign('aluno_id')->references('id')->on('alunos');
+
             $table->timestamps();
         });
     }

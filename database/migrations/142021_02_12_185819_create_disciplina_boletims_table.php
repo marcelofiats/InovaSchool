@@ -15,6 +15,12 @@ class CreateDisciplinaBoletimsTable extends Migration
     {
         Schema::create('disciplina_boletims', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('disciplina_id');
+            $table->unsignedInteger('boletim_id');
+
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('boletim_id')->references('id')->on('boletins');
+
             $table->timestamps();
         });
     }

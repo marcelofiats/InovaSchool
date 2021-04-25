@@ -15,6 +15,15 @@ class CreateFinanceirosTable extends Migration
     {
         Schema::create('financeiros', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('data_vencimento');
+            $table->dateTime('data_pagamento')->nullable();
+            $table->string('codigo_barras');
+            $table->string('forma_pagamento');
+            $table->boolean('status');
+            $table->uuid('responsavel_id')->nullable();
+
+            $table->foreign('responsavel_id')->references('id')->on('responsaveis');
+
             $table->timestamps();
         });
     }

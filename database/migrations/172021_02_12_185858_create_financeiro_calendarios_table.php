@@ -15,6 +15,12 @@ class CreateFinanceiroCalendariosTable extends Migration
     {
         Schema::create('financeiro_calendarios', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('financeiro_id');
+            $table->unsignedInteger('calendario_id');
+
+            $table->foreign('financeiro_id')->references('id')->on('financeiros');
+            $table->foreign('calendario_id')->references('id')->on('calendarios');
+
             $table->timestamps();
         });
     }

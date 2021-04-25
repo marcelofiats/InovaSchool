@@ -12,13 +12,10 @@
     <title>InovaSchool</title>
 
     <!-- Fontfaces CSS-->
-    <link href="{{asset('/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('/css/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('/css/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link href="{{asset('/css/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="{{asset('/css/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
     <link href="{{asset('/css/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
@@ -30,8 +27,13 @@
     <link href="{{asset('/css/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
+    <link href="{{asset('/css/app.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('/css/theme.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('/css/style.css')}}" rel="stylesheet" media="all">
+
+    <script src="{{asset('/js/app.js')}}"></script>
+
+    @yield('header')
 
 </head>
 <body class="animsition">

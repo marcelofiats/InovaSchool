@@ -4,14 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Aluno;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +17,25 @@ class AlunoController extends Controller
     {
         $alunos = Aluno::all();
         return view('aluno.index', compact("alunos"));
+    }
+
+    public function indexJson(Request $request, $nome = '', $order_by='nome', $desc = 'DESC')
+    {
+        $alunos = Aluno::when($nome, function($q) use($nome) {
+            if ($nome == 'todos') {
+                return $q;
+            }
+            return $q->where('nome', 'like', $nome . '%');
+        });
+
+        /**
+         * @todo Colocar o order by
+         */
+        $alunos->when($order_by, function($q) use($order_by, $desc) {
+            return $q->orderBy($order_by, $desc);
+        });
+
+        return $alunos->get()->toJson();
     }
 
     /**

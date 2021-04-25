@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/cleave.min.js": "/js/cleave.min.js",
+    "/js/cleave-phone.br.js": "/js/cleave-phone.br.js",
+    "/js/jquery.min.js": "/js/jquery.min.js",
     "/css/app.css": "/css/app.css"
 }

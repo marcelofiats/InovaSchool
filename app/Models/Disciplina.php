@@ -14,10 +14,14 @@ class Disciplina extends Model
     ];
 
     public function alunos(){
-        return $this->belongsToMany(Aluno::class, 'aluno_disciplina');
+        return $this->belongsToMany(Aluno::class, 'aluno_disciplinas');
     }
 
     public function boletins(){
-        return $this->belongsToMany(Boletim::class, 'disciplina_boletin');
+        return $this->belongsToMany(Boletim::class, 'disciplina_boletims');
+    }
+
+    public function professores(){
+        return $this->belongsToMany(Professor::class, 'professor_disciplinas');
     }
 }

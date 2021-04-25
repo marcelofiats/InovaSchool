@@ -17,8 +17,9 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->string('email')->unique();
             $table->string('password');
+            $table->longText('token')->nullable();
             $table->enum('permissao',['Administrador', 'Diretor', 'Secretaria', 'Professor', 'Responsavel']);
-            $table->uuid('pessoa_id');
+            $table->uuid('pessoa_id')->nullable();
             $table->foreign('pessoa_id')->references('id')->on('pessoas');
             $table->softDeletes();
             $table->timestamp('email_verified_at')->nullable();

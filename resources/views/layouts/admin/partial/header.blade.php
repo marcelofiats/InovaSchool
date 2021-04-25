@@ -22,7 +22,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -123,10 +123,7 @@
                                                                  document.getElementById('logout-form').submit();">
                                                     <i class="zmdi zmdi-power"></i>Sair</a>
                                             </div>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,5 +133,5 @@
 
             </header>
                 <div class="main-content">
-                    <div class="section__content section__content--p30">
-                        <div class="container-fluid">
+                    <div class="section__content--p30">
+                        <div class="container">

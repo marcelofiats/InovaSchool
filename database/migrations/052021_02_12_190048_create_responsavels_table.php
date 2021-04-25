@@ -13,13 +13,13 @@ class CreateResponsavelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('responsavels', function (Blueprint $table) {
+        Schema::create('responsaveis', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('parentesco_aluno')->default();
 
-            $table->uuid('user_id');
+            $table->uuid('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
+            $table->timestamps();
             $table->softDeletes();
         });
     }

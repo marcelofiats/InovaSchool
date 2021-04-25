@@ -15,6 +15,12 @@ class CreateProfessorDisciplinasTable extends Migration
     {
         Schema::create('professor_disciplinas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('professor_id');
+            $table->unsignedInteger('disciplina_id');
+
+            $table->foreign('professor_id')->references('id')->on('professores');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+
             $table->timestamps();
         });
     }

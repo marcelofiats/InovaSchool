@@ -22,4 +22,8 @@ class Aluno extends Model
     public function disciplinas(){
         return $this->hasMany(Disciplina::class,'Aluno_Disciplina');
     }
+
+    public function turma(){
+        return $this->hasOne(Turma::class);
+    }
 }

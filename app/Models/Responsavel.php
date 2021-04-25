@@ -25,10 +25,6 @@ class Responsavel extends Model
         'parentesco_aluno', 'email', 'password', 'user_id'
     ];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
     protected static function boot()
     {
         parent::boot();

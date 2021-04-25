@@ -15,6 +15,12 @@ class CreateBoletimCalendariosTable extends Migration
     {
         Schema::create('boletim_calendarios', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('boletim_id');
+            $table->unsignedInteger('calendario_id');
+
+            $table->foreign('boletim_id')->references('id')->on('boletins');
+            $table->foreign('calendario_id')->references('id')->on('calendarios');
+
             $table->timestamps();
         });
     }

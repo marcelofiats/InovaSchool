@@ -15,6 +15,12 @@ class CreateProfessorTurmasTable extends Migration
     {
         Schema::create('professor_turmas', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedInteger('professor_id');
+            $table->unsignedInteger('turma_id');
+
+            $table->foreign('professor_id')->references('id')->on('professores');
+            $table->foreign('turma_id')->references('id')->on('turmas');
             $table->timestamps();
         });
     }

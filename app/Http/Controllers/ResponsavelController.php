@@ -6,10 +6,12 @@ use App\Models\User;
 use App\Models\Pessoa;
 use App\Models\Responsavel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PessoaRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Jobs\sendMailUser as JobsSendMailUser;
 
 class ResponsavelController extends Controller
 {
@@ -53,6 +55,7 @@ class ResponsavelController extends Controller
         $pessoa->cpf = $request->cpf;
         $pessoa->rg = $request->rg;
         $pessoa->telefone1 = $request->telefone1;
+        $pessoa->telefone2 = $request->telefone2;
         $pessoa->cep = $request->cep;
         $pessoa->rua = $request->rua;
         $pessoa->numero = $request->numero;
@@ -62,19 +65,28 @@ class ResponsavelController extends Controller
         $pessoa->uf = $request->uf;
         $index = $pessoa->save();
 
+        $user = new User();
+
         if($index)
         {
             $index = null;
-            $user = new User();
             $user->email = $request->email;
             $user->password = Hash::make($request->cpf);
+            $user->permissao = 5;
+            $user->pessoa()->associate($pessoa);
             $user->save();
-            $pessoa->user()->associate($user);
+            $responsavel = New Responsavel();
+            $responsavel->parentesco_aluno = $request->parentesco_aluno;
+            $responsavel->user()->associate($user);
+            $responsavel->save();
         }
         $index = $pessoa->save();
+
+
         if(!$index){
-            return redirect()->back()->with('error', 'erro ao cadastrar novo responsavel');
+            return redirect()->route('responsavel.index')->with('error', 'erro ao cadastrar novo responsavel');
         }
+        JobsSendMailUser::dispatch($user);
         return redirect()->route('responsavel.index')->with('success', 'Responsavel cadastrado com sucesso!!!');
 
     }
@@ -111,7 +123,35 @@ class ResponsavelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $responsavel = Responsavel::find($id);
+        $responsavel->user->pessoa->nome = $request->nome;
+        $responsavel->user->pessoa->data_nascimento = $request->dataNascimento;
+        $responsavel->user->pessoa->sexo = $request->sexo;
+        $responsavel->user->pessoa->cpf = $request->cpf;
+        $responsavel->user->pessoa->rg = $request->rg;
+        $responsavel->user->pessoa->telefone1 = $request->telefone1;
+        $responsavel->user->pessoa->telefone2 = $request->telefone2;
+        $responsavel->user->pessoa->cep = $request->cep;
+        $responsavel->user->pessoa->rua = $request->rua;
+        $responsavel->user->pessoa->numero = $request->numero;
+        $responsavel->user->pessoa->complemento = $request->complemento;
+        $responsavel->user->pessoa->bairro = $request->bairro;
+        $responsavel->user->pessoa->cidade = $request->cidade;
+        $responsavel->user->pessoa->uf = $request->uf;
+
+        $responsavel->user->email = $request->email;
+        $responsavel->user->save();
+
+        $responsavel->parentesco_aluno = $request->parentesco_aluno;
+        $responsavel->save();
+
+        $index = $responsavel->user->pessoa->save();
+
+        if(!$index){
+            return redirect()->route('responsavel.index')->with('error', 'erro ao alterar cadastrar novo responsavel');
+        }
+        return redirect()->route('responsavel.index')->with('success', 'Responsavel alterado com sucesso!!!');
+
     }
 
     /**

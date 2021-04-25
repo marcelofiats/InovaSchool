@@ -42,8 +42,8 @@ class Professor extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function professor_disciplina(){
-        return $this->belongsToMany(Disciplina::class,'Professor_Disciplina');
+    public function disciplina(){
+        return $this->belongsToMany(Disciplina::class,'professor_disciplinas');
     }
 
 }

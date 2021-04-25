@@ -27,6 +27,9 @@ class CreateAlunosTable extends Migration
             $table->unsignedBigInteger('matricula_id')->nullable();
             $table->foreign('matricula_id')->references('id')->on('matriculas');
 
+            $table->unsignedBigInteger('turma_id')->nullable();
+            $table->foreign('turma_id')->references('id')->on('turmas');
+
             $table->softDeletes();
             $table->timestamps();
         });

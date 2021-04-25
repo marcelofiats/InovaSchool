@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Responsavel::class);
         $this->call(Secretaria::class);
         $this->call(Aluno::class);
+        $this->call(LaratrustSeeder::class);
+        $this->call(EventoSeeder::class);
     }
 }
